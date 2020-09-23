@@ -1,6 +1,19 @@
 # Compiled class file
 *.class
 
+#Idea
+.idea/
+*.ipr
+*.iws
+*.iml
+out/
+.idea_modules/
+target/classes
+/target/test-classes
+target/
+
+.DS_Store
+
 # Log file
 *.log
 
