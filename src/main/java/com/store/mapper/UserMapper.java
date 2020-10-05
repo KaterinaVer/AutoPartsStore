@@ -14,11 +14,14 @@ import java.util.List;
 public interface UserMapper {
 
     @Mapping(target = "userId", source = "id")
+    @Mapping(target = "role", source = "role.roleName")
     UserResponse userToUserResponse(User user);
 
     @IterableMapping(elementTargetType = UserResponse.class)
     List<UserResponse> userToUserListResponse(List<User> users);
 
     void mapUserFromUserRequest (UserRequest userRequest, @MappingTarget User user);
+
+    User userRequestToUser(UserRequest userRequest);
 
 }

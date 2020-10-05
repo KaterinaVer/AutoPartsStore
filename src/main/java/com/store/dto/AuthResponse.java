@@ -7,7 +7,8 @@ import lombok.*;
 @Setter
 @Getter
 @ToString
-public class Jwt {
+public class AuthResponse {
+
     private String token;
 
 }

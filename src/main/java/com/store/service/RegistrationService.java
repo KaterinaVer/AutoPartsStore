@@ -25,13 +25,11 @@ public class RegistrationService{
   private final UserMapper userMapper;
   private final RoleRepository roleRepository;
 
-  public UserResponse registrateSimpleUser(UserRequest userRequest) {
-    User user = new User();
-    userMapper.mapUserFromUserRequest(userRequest, user);
+  public UserResponse registerSimpleUser(final UserRequest userRequest) {
+    User user = userMapper.userRequestToUser(userRequest);
     user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-
-    Role userRole = getRoleByNameOrThrowException();
+    final Role userRole = getRoleByNameOrThrowException();
     user.setRole(userRole);
 
     user = userRepository.save(user);

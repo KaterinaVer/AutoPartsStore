@@ -16,13 +16,13 @@ public class CustomUserDetails implements UserDetails {
     private Collection<? extends GrantedAuthority> grantedAuthorities;
 
     public static CustomUserDetails fromUserEntityToCustomUserDetails(User userEntity) {
-        CustomUserDetails c = new CustomUserDetails();
-        c.login = userEntity.getLogin();
-        c.password = userEntity.getPassword();
+        CustomUserDetails userDetails = new CustomUserDetails();
+        userDetails.login = userEntity.getLogin();
+        userDetails.password = userEntity.getPassword();
 
-        c.grantedAuthorities = Collections.singletonList(new SimpleGrantedAuthority(ROLE_PREFIX +
+        userDetails.grantedAuthorities = Collections.singletonList(new SimpleGrantedAuthority(ROLE_PREFIX +
                 userEntity.getRole().getRoleName().name()));
-        return c;
+        return userDetails;
     }
 
     @Override

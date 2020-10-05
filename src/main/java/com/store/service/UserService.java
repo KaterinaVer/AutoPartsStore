@@ -26,26 +26,26 @@ public class UserService{
   }
 
   @Transactional(readOnly = true)
-  public UserResponse getUserById(Long id) throws NotFoundException {
+  public UserResponse getUserById(final Long id) throws NotFoundException {
     return userMapper.userToUserResponse(getUserByIdOrThrowException(id));
   }
 
-  public User findByLogin(String login) {
+  public User findByLogin(final String login) {
     return userRepository.findByLoginIgnoreCase(login).orElseThrow(()
             -> new NotFoundException(String.format("User with login %s not found", login)));
   }
 
-  public void deleteUser(Long id) throws NotFoundException {
+  public void deleteUser(final Long id) throws NotFoundException {
     userRepository.delete(getUserByIdOrThrowException(id));
   }
 
-  public void updateUser(Long userId, UserRequest userRequest) throws NotFoundException {
+  public void updateUser(final Long userId, UserRequest userRequest) throws NotFoundException {
     User currentUser = getUserByIdOrThrowException(userId);
     userMapper.mapUserFromUserRequest(userRequest, currentUser);
     userRepository.save(currentUser);
   }
 
-  private User getUserByIdOrThrowException(Long id) throws NotFoundException {
+  private User getUserByIdOrThrowException(final Long id) throws NotFoundException {
     return userRepository.findById(id)
             .orElseThrow(() -> new NotFoundException(String.format("User with id %d not found", id)));
   }

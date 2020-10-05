@@ -1,4 +1,4 @@
-package com.store.rest;
+package com.store.controller;
 
 import com.store.entity.Role;
 import com.store.service.RoleService;
@@ -19,7 +19,7 @@ public class RoleController {
 
   @GetMapping("/api/roles")
   public ResponseEntity<List<Role>> getRoles() {
-    List<Role> response = roleService.getAllRoles();
+    final List<Role> response = roleService.getAllRoles();
     return ResponseEntity.ok().body(response);
   }
 

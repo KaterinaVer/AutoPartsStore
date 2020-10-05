@@ -1,4 +1,4 @@
-package com.store.rest;
+package com.store.controller;
 
 public class SaleControllerTest {
 

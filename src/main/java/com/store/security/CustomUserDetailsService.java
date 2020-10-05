@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Override
-    public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User userEntity = userService.findByLogin(username);
+    public CustomUserDetails loadUserByUsername(final String userName) throws UsernameNotFoundException {
+        final User userEntity = userService.findByLogin(userName);
         return CustomUserDetails.fromUserEntityToCustomUserDetails(userEntity);
     }
 }

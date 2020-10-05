@@ -1,4 +1,4 @@
-package com.store.rest;
+package com.store.controller;
 
 import com.store.dto.UserRequest;
 import com.store.dto.UserResponse;
@@ -25,21 +25,21 @@ public class UserController {
 
   @GetMapping("/api/users/{id}")
   public ResponseEntity<UserResponse> getUser(
-      @PathVariable("id") Long userId) {
+      @PathVariable("id") final Long userId) {
     return ResponseEntity.ok().body(userService.getUserById(userId));
   }
 
   @DeleteMapping("/api/users/{id}")
   public ResponseEntity<Void> deleteUserById(
-      @PathVariable("id") Long userId) {
+      @PathVariable("id") final Long userId) {
     userService.deleteUser(userId);
     return ResponseEntity.ok().build();
   }
 
   @PutMapping("/api/users/{id}")
   public ResponseEntity<Void> updateUser(
-      @PathVariable("id") Long userId,
-      @RequestBody @Valid UserRequest user) {
+      @PathVariable("id") final Long userId,
+      @RequestBody @Valid final UserRequest user) {
     userService.updateUser(userId, user);
     return ResponseEntity.accepted().build();
   }
